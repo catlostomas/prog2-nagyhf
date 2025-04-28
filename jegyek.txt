@@ -1,0 +1,25 @@
+4
+Budapest
+Esztergom
+12 13
+13 13
+IC123
+1 1 61786
+Budapest
+Esztergom
+12 13
+13 13
+IC123
+1 2 29014
+Budapest
+Esztergom
+12 13
+13 13
+IC123
+1 3 13049
+Budapest
+Esztergom
+12 13
+13 13
+IC123
+1 4 48347

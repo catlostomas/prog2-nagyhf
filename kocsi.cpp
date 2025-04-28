@@ -28,7 +28,6 @@ void Kocsi::foglal_hely(int idx){
     if (!helyTomb[idx].getFoglalt()){
         helyTomb[idx].foglal();
         foglalt_db++;
-        hely_db--;
         std::cout << "sikeres foglalas" << std::endl;
     }
     else{
@@ -48,4 +47,8 @@ Kocsi& Kocsi::operator=(const Kocsi& rhs){
         this->helyTomb = rhs.helyTomb;
     }
     return *this;
+}
+
+size_t Kocsi::getSzabadHely() const{
+    return this->hely_db - this->foglalt_db;
 }

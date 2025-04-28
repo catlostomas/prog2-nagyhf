@@ -149,7 +149,7 @@ void Menu::foglal(){
         std::cout << "Nem letezik ilyen kocsi" << std::endl;
         return;
     }
-    std::cout << vonatok[idx].getKocsiHelyDB(kocsiszam - 1) << " hely van a kocsiban. Melyik helyet szeretne lefoglalni ?" << std::endl;
+    std::cout << vonatok[idx].getKocsi(kocsiszam - 1).getSzabadHely() << " hely van a kocsiban. Melyik helyet szeretne lefoglalni ?" << std::endl;
     std::cin >> helyszam;
     if (helyszam <= 0 || helyszam > vonatok[idx].getKocsi(kocsiszam - 1).get_helyDB()){
         std::cout << "Nem letezik ez a hely" << std::endl;

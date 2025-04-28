@@ -28,6 +28,7 @@ public:
     int get_helyDB() const;
     void foglal_hely(int idx);
     Kocsi& operator=(const Kocsi& rhs);
+    size_t getSzabadHely() const;
     // destruktor
     ~Kocsi() {helyTomb.clear();};
 };
