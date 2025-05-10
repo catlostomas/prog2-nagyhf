@@ -5,7 +5,6 @@
 void Hely::foglal(){
     if (!foglalt){
         foglalt = true;
-        std::cout << "sikeres foglalas" << std::endl;
     }
     else{
         std::cout << "mar foglalt" << std::endl;

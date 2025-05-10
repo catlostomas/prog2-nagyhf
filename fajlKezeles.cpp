@@ -3,8 +3,7 @@
 void Fajl::beolvasVonatok(const std::string& filename, DinTomb<Vonat>& vonatok){
     std::ifstream in(filename);
     if (!in){
-        std::cout << "Nem lehet a fjlt megnzuitvni" << std::endl;
-        return;
+        throw std::runtime_error("Nem lehet a fajlt megnyitni");
     }
     vonatok.clear();
     size_t vonatDB;
@@ -44,8 +43,7 @@ void Fajl::beolvasVonatok(const std::string& filename, DinTomb<Vonat>& vonatok){
 void Fajl::beolvasJegyek(const std::string& filename, DinTomb<Jegy>& jegyek){
     std::ifstream in(filename);
     if (!in){
-        std::cout << "Nem lehet a fjlt megnzuitvni" << std::endl;
-        return;
+        throw std::runtime_error("Nem lehet a fajlt megnyitni");
     }
     size_t jegyDB;
     in >> jegyDB;
@@ -79,8 +77,7 @@ void Fajl::beolvasJegyek(const std::string& filename, DinTomb<Jegy>& jegyek){
 void Fajl::mentesVonatok(const std::string& filename, const DinTomb<Vonat>& vonatok){
     std::ofstream out(filename);
     if (!out){
-        std::cout << "Nem lehet a fjlt megnzuitvni" << std::endl;
-        return;
+        throw std::runtime_error("Nem lehet a fajlt megnyitni");
     }
     out << vonatok.getSiz() << "\n";
     for (size_t i = 0; i < vonatok.getSiz(); i++){
@@ -110,8 +107,7 @@ void Fajl::mentesVonatok(const std::string& filename, const DinTomb<Vonat>& vona
 void Fajl::mentesJegyek(const std::string& filename, const DinTomb<Jegy>& jegyek){
     std::ofstream out(filename);
     if (!out){
-        std::cout << "Nem lehet a fjlt megnzuitvni" << std::endl;
-        return;
+        throw std::runtime_error("Nem lehet a fajlt megnyitni");
     }
     out << jegyek.getSiz() << "\n";
     for (size_t i = 0; i < jegyek.getSiz(); i++){

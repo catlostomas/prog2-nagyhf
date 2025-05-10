@@ -16,7 +16,7 @@ class Jegy{
     int Jegy_ID;
 public:
     // default konstructor
-    Jegy(): ind_all(""), erk_all(""), ind_ido(0,0), erk_ido(0,0), vonatszam(""), kocsiszam(0), helyszam(), Jegy_ID() {};
+    Jegy(): ind_all(""), erk_all(""), ind_ido(0,0), erk_ido(0,0), vonatszam(""), kocsiszam(0), helyszam(0), Jegy_ID(0) {};
     // parameteres konstruktor
     Jegy(String ia, String ea, Ido ind, Ido erk, String vsz, int ksz, int hsz, int id): ind_all(ia), erk_all(ea), ind_ido(ind), erk_ido(erk), vonatszam(vsz), kocsiszam(ksz), helyszam(hsz), Jegy_ID(id) {};
     void print();

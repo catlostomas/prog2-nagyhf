@@ -24,7 +24,11 @@ public:
         }
     };
     // copy konstruktor
-    Vonat(const Vonat& rhs): vonatszam(rhs.vonatszam), ind_allomas(rhs.ind_allomas), erk_allomas(rhs.erk_allomas), ind_ido(rhs.ind_ido), erk_ido(rhs.erk_ido), keses(rhs.keses), kocsi_db(0), kocsik(rhs.kocsik) {};
+    Vonat(const Vonat& rhs): vonatszam(rhs.vonatszam), ind_allomas(rhs.ind_allomas), erk_allomas(rhs.erk_allomas), ind_ido(rhs.ind_ido), erk_ido(rhs.erk_ido), keses(rhs.keses), kocsi_db(rhs.kocsi_db) {
+        for (size_t i = 0; i < rhs.kocsik.getSiz(); ++i){
+            kocsik.push_back(rhs.kocsik[i]);
+        }
+    };
     void print(); // kiiras tesztelesre
     void setKeses(int k);
     int getKeses() const;

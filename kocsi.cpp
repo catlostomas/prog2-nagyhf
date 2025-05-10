@@ -28,7 +28,6 @@ void Kocsi::foglal_hely(int idx){
     if (!helyTomb[idx].getFoglalt()){
         helyTomb[idx].foglal();
         foglalt_db++;
-        std::cout << "sikeres foglalas" << std::endl;
     }
     else{
         std::cout << "mar foglalt" << std::endl;
