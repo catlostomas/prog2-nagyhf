@@ -46,7 +46,7 @@ public:
     void del_element(const T& val){
         size_t idx = is_element(val);
         if (idx == static_cast<size_t>(-1)){
-            std::cout << "not element" << std::endl;
+            throw std::runtime_error("Nem eleme a tombnek");
             return;
         }
         for (size_t i = idx; i < siz - 1; ++i){
@@ -58,7 +58,7 @@ public:
     // indexelo operatorok
     T& operator[](size_t idx){
         if (idx >= siz){
-            std::cout << "oor idx operator" << std::cout;
+            throw std::out_of_range("Rossz index");
         }
         else{
             return pData[idx];
@@ -66,7 +66,7 @@ public:
     }
     const T& operator[](size_t idx) const{
         if (idx >= siz){
-            std::cout << "oor idx operator" << std::endl;
+            throw std::out_of_range("Rossz index");
         }
         else{
             return pData[idx];

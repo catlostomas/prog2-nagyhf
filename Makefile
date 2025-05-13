@@ -1,6 +1,6 @@
 PROG = hazi  # a program neve (ezt allitjuk elo)
-PROG_O = main.o string5.o menu.o kocsi.o hely.o ido.o vonat.o jegy.o fajlKezeles.o  # program object fajljai 
-PROG_H = string5.h menu.hpp memtrace.h kocsi.hpp hely.hpp dinTomb.hpp ido.hpp vonat.hpp jegy.cpp fajlKezeles.cpp    # program header fajljai
+PROG_O = main.o string5.o menu.o kocsi.o hely.o ido.o vonat.o jegy.o fajlKezeles.o test_esetek.o # program object fajljai 
+PROG_H = string5.h menu.hpp memtrace.h kocsi.hpp hely.hpp dinTomb.hpp ido.hpp vonat.hpp test_esetek.hpp   # program header fajljai
 PROG_L =              # program libjei
 
 MTRACE_O = memtrace.o # memtrace object fajl

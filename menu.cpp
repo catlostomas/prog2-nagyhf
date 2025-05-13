@@ -6,20 +6,25 @@ void Menu::show(){
     std::cout << "[2] Vonat torlese" << std::endl;
     std::cout << "[3] Keses beallitasa" << std::endl;
     std::cout << "[4] Jegy vasarlas" << std::endl;
+    std::cout << "[5] Tesztesetek futtatasa" << std::endl;
 }
 
 int Menu::get_func(){
     int pick = 0;
     std::cin >> pick;
     if (pick < 0 || pick >= 10){
-        throw "HM93XY";
+        throw std::out_of_range("Rossz index");
         return -1;
     }
     return pick;
 }
 void Menu::mainloop(){
-    Fajl::beolvasVonatok("vonatok.txt", vonatok);
-    Fajl::beolvasJegyek("jegyek.txt", jegyek);
+    try {
+        Fajl::beolvasVonatok("vonatok.txt", vonatok);
+        Fajl::beolvasJegyek("jegyek.txt", jegyek);
+    } catch (std::runtime_error &err){
+        std::cout << "HIBA: " << err.what() << std::endl;
+    }
     bool mainloop = true;
     do {
         show();
@@ -40,12 +45,15 @@ void Menu::mainloop(){
             case 4:
                 foglal();
                 break;
+            case 5:
+                Test::futtatas();
+                return;
+                break;
             default:
-                std::cout << choice << " function called" << std::endl;
+                throw std::out_of_range("Nem letezo funkciot akar hasznalni");
         }
     }
     while (mainloop);
-    std::cout << "mentes ++ kilepes" << std::endl;
     Fajl::mentesJegyek("jegyek.txt", jegyek);
     Fajl::mentesVonatok("vonatok.txt", vonatok);
     return;
@@ -56,22 +64,21 @@ void Menu::uj_vonat(){
     int ind_ora, ind_perc, erk_ora, erk_perc, kocsiDB;
     std::cout << "Adja meg a vonatszamot:" << std::endl;
     std::cin >> vsz;
-    std::cout << "Adja meg az ind_all" << std::endl;
+    std::cout << "Honnan? " << std::endl;
     std::cin >> ind_all;
-    std::cout << "Adja meg az erk_allt" << std::endl;
+    std::cout << "Hova? " << std::endl;
     std::cin >> erk_all;
-    std::cout << " Adja meg az indulas idejet (ora perc)" << std::endl;
+    std::cout << "Adja meg az indulas idejet (ora perc) " << std::endl;
     std::cin >> ind_ora >> ind_perc;
-    std::cout << "Adja meg az erkezest idejet (ora perc)" << std::endl;
+    std::cout << "Adja meg az erkezest idejet (ora perc) " << std::endl;
     std::cin >> erk_ora >> erk_perc;
     Ido ind_ido(ind_ora, ind_perc);
     Ido erk_ido(erk_ora, erk_perc);
-    std::cout << "Adja meg, hogy hany kocsibol all a vonat" << std::endl;
+    std::cout << "Adja meg, hogy hany kocsibol all a vonat? " << std::endl;
     std::cin >> kocsiDB;
     Vonat ujVonat(vsz, ind_all, erk_all, ind_ido, erk_ido, 0, kocsiDB);
     vonatok.push_back(ujVonat);
     std::cout << "Uj vonat hozzaadva: " << std::endl;
-    ujVonat.print();
 }
 
 
@@ -173,4 +180,10 @@ int Menu::randomJegyID(){
     return randomNum;
 }
 
+Vonat Menu::getVonat(size_t idx) const{
+    if (idx >= vonatok.getSiz()){
+        throw std::out_of_range("Rossz index");
+    }
+    return vonatok[idx];
+}
 

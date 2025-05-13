@@ -7,6 +7,7 @@
 #include "vonat.hpp"
 #include "jegy.hpp"
 #include "fajlKezeles.hpp"
+#include "test_esetek.hpp"
 
 class Menu{
 private:
@@ -24,6 +25,7 @@ public:
     void keses_beallit();
     void foglal();
     int randomJegyID();
+    Vonat getVonat(size_t idx) const;
 };
 
 #endif // DINTOMB_HPP
