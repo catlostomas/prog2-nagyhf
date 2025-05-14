@@ -15,6 +15,8 @@ private:
     DinTomb<Jegy> jegyek;
 public:
     void mainloop();
+    void showAdmin();
+    void AdminMainloop();
     void show();
     int get_func();
     void call_func();
@@ -25,6 +27,7 @@ public:
     void keses_beallit();
     void foglal();
     int randomJegyID();
+    void vonatAdatok();
     Vonat getVonat(size_t idx) const;
 };
 

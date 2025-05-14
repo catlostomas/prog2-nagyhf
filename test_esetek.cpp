@@ -20,7 +20,7 @@ void Test::futtatas() {
         try {
             file.beolvasVonatok(test.c_str(), vonatok);
             EXPECT_THROW(test, std::runtime_error);
-        } catch(const std::runtime_error & err) {}
+        } catch(std::runtime_error & err) {}
     } END;
 // helyes filename - jegyekBeolvasasa
     TEST(NoThrow, JegyekBeolvasasa){

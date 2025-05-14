@@ -22,6 +22,7 @@ public:
     void print();
     bool foglalt_e();
     void del_jegy();
+    bool operator==(const Jegy& masik) const;
     String getIndAll() const {return ind_all;};
     String getErkAll() const {return erk_all;};
     Ido getIndIdo() const {return ind_ido;};

@@ -7,3 +7,8 @@ void Jegy::print(){
     std::cout << "Kocsi: " << kocsiszam << ", hely: " << helyszam << std::endl;
     std::cout << "Azonosito: " << Jegy_ID << std::endl;
 }
+
+// Jegy_ID random szam, tehat eleg azt osszehasonlitani
+bool Jegy::operator==(const Jegy& masik) const{
+    return (Jegy_ID == masik.Jegy_ID);
+}
