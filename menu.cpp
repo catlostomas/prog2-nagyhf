@@ -135,7 +135,7 @@ void Menu::vonat_torlese(){
                 torolt_jegyek++;
             }
         }
-        std::cout << keresett << " vonat torolve es a hozza tartozo " << torolt_jegyek << " torolve!" << std::endl;
+        std::cout << keresett << " vonat torolve es a hozza tartozo " << torolt_jegyek << " jegy torolve!" << std::endl;
         return;
     } else {
         std::cout << "Sikertelen torles" << std::endl;
@@ -196,7 +196,7 @@ void Menu::foglal(){
     Jegy uj_jegy(vonatok[idx].get_indAll(), vonatok[idx].get_erkAll(), vonatok[idx].get_indIdo(), vonatok[idx].get_erkIdo(), vonatok[idx].get_Vonatszam(), kocsiszam, helyszam, randomJegyID());
     jegyek.push_back(uj_jegy);
     uj_jegy.print();
-    std::cout << "sikeres foglalas" << std::endl;
+    std::cout << helyszam << " hely a " << kocsiszam << " kocsiban lefoglalva!" << std::endl;
     return;
 }
 
@@ -251,3 +251,16 @@ void Menu::AdminMainloop(){
     }
     while (mainloop);
 }
+
+Jegy Menu::getJegy(size_t idx) const{
+    return jegyek[idx];
+}
+
+const DinTomb<Jegy>& Menu::getJegyek() const{
+    return jegyek;
+}
+
+const DinTomb<Vonat>& Menu::getVonatok() const{
+    return vonatok;
+}
+

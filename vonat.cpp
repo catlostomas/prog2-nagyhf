@@ -4,7 +4,7 @@
 void Vonat::print(){
     std::cout << "Vonatszam: " << vonatszam << std::endl;
     std::cout << "Indulasi allomas: " << ind_allomas << ", indulasi idopont: " << ind_ido << std::endl;
-    std::cout << "Erkezi allomas: " << erk_allomas << ", erkezesi idopont: " << erk_ido << std::endl;
+    std::cout << "Erkezesi allomas: " << erk_allomas << ", erkezesi idopont: " << erk_ido << std::endl;
     std::cout << "Aktualis keses: " << keses << std::endl;
     std::cout << "Kocsik szama: " << kocsi_db << std::endl;
     for (size_t i = 0; i < kocsi_db; i++){

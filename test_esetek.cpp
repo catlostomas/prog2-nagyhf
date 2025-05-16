@@ -183,7 +183,7 @@ void Test::futtatas() {
             "Adja meg az indulas idejet (ora perc) \n"
             "Adja meg az erkezest idejet (ora perc) \n"
             "Adja meg, hogy hany kocsibol all a vonat? \n"
-            "Uj vonat hozzaadva: \n";
+            "Uj vonat hozzaadva!\n";
 
         EXPECT_TRUE(output.str().find(vartOutput) != std::string::npos);
         Vonat uj = menu.getVonat(0);
@@ -195,29 +195,145 @@ void Test::futtatas() {
         EXPECT_EQ(uj.getKocsiDB(), 3);
     } END;
 
-// Vonat torlese
-/*
+// Vonat torlese, EZT MEG KELL FIXELNI
     TEST(VonatTorlese, MenuClass){
-        std::istringstream input(
+        std::istringstream vonatIN(
+            "vonatszam\n"
+            "ind_allomas\n"
+            "erk_allomas\n"
+            "12 12\n"
+            "13 13\n"
+            "1\n"
+        );
+        std::istringstream torlesIN(
             "vonatszam\n"
             "1\n"
         );
-        std::ostringstream output;
+        std::ostringstream out;
         std::streambuf* cinBuf = std::cin.rdbuf();
         std::streambuf* coutBuf = std::cout.rdbuf();
-        std::cin.rdbuf(input.rdbuf());
-        std::cout.rdbuf(output.rdbuf());
-
+        std::cin.rdbuf(vonatIN.rdbuf());
+        std::cout.rdbuf(out.rdbuf());
         Menu menu;
         menu.uj_vonat();
+        std::cin.rdbuf(torlesIN.rdbuf());
         menu.vonat_torlese();
-        
         std::cin.rdbuf(cinBuf);
         std::cout.rdbuf(coutBuf);
-        std::string vartOutput = 
-            "Adja meg a keresett vonat szamat\n"
-            "Ha mindent rendben talal akkor irjon be 1-et \n";
-            "Sikeres torles\n";
-    }
-*/
+        EXPECT_TRUE(out.str().find("Adja meg a keresett vonat szamat") != std::string::npos);
+        EXPECT_TRUE(out.str().find("Ha mindent rendben talal akkor irjon be 1-et, ha nem akkor 0-t") != std::string::npos);
+        EXPECT_TRUE(out.str().find("vonatszam vonat torolve") != std::string::npos);
+        EXPECT_EQ(menu.getVonatok().getSiz(), 0);
+    } END;
+
+// UjJegy teszt
+    TEST(UjJegy, MenuClass){
+        Menu menu;
+        std::istringstream vonatIN(
+            "vonatszam\n"
+            "ind_allomas\n"
+            "erk_allomas\n"
+            "12 12\n"
+            "13 13\n"
+            "1\n"
+        );
+        std::ostringstream vonatOut;
+        std::streambuf* eredetiOut = std::cout.rdbuf();
+        std::cout.rdbuf(vonatOut.rdbuf());
+        std::streambuf* eredetiIN = std::cin.rdbuf();
+        std::cin.rdbuf(vonatIN.rdbuf());
+        menu.uj_vonat();
+        std::istringstream jegyIN(
+            "vonatszam\n"
+            "1\n"
+            "1\n"
+        );
+        std::ostringstream jegyOut;
+        std::cin.rdbuf(jegyIN.rdbuf());
+        std::cout.rdbuf(jegyOut.rdbuf());
+        menu.foglal();
+        std::cin.rdbuf(eredetiIN);
+        std::cout.rdbuf(eredetiOut);
+        EXPECT_TRUE(jegyOut.str().find("Adja meg a vonatszamot:") != std::string::npos);
+        EXPECT_TRUE(jegyOut.str().find("1 kocsi van a vonaton") != std::string::npos);
+        EXPECT_TRUE(jegyOut.str().find("Melyik helyet szeretne lefoglalni") != std::string::npos);
+        EXPECT_TRUE(jegyOut.str().find("hely a") != std::string::npos);
+        EXPECT_TRUE(jegyOut.str().find("kocsiban lefoglalva!") != std::string::npos);
+        EXPECT_EQ(menu.getJegyek().getSiz(), 1);
+        Jegy jegy = menu.getJegy(0);
+        EXPECT_EQ(jegy.getVsz(), "vonatszam");
+    } END;
+
+// Keses teszt
+    TEST(SetKeses, MenuClass){
+        Menu menu;
+        std::istringstream vonatIN(
+            "vonatszam\n"
+            "ind_allomas\n"
+            "erk_allomas\n"
+            "12 12\n"
+            "13 13\n"
+            "1\n"
+        );
+        std::ostringstream vonatOUT;
+        std::streambuf* eredetiOUT = std::cout.rdbuf();
+        std::cout.rdbuf(vonatOUT.rdbuf());
+        std::streambuf* eredetiIN = std::cin.rdbuf();
+        std::cin.rdbuf(vonatIN.rdbuf());
+        menu.uj_vonat();
+        std::cin.rdbuf(eredetiIN);
+        std::cout.rdbuf(eredetiOUT);
+        std::istringstream kesesIN(
+            "vonatszam\n"
+            "30\n"
+        );
+        std::ostringstream kesesOUT;
+        std::cout.rdbuf(kesesOUT.rdbuf());
+        std::cin.rdbuf(kesesIN.rdbuf());
+        menu.keses_beallit();
+        std::cin.rdbuf(eredetiIN);
+        std::cout.rdbuf(eredetiOUT);
+        EXPECT_TRUE(kesesOUT.str().find("Adja meg a keresett vonat szamat") != std::string::npos);
+        EXPECT_TRUE(kesesOUT.str().find("Aktualis kesese a vonatnak:") != std::string::npos);
+        EXPECT_TRUE(kesesOUT.str().find("Mennyire szeretne a kesest beallitani?") != std::string::npos);
+        EXPECT_TRUE(kesesOUT.str().find("A keses atallitva 30 percre") != std::string::npos);
+        Vonat vonat = menu.getVonat(0);
+        EXPECT_EQ(vonat.getKeses(), 30);
+    } END;
+
+// Vonat adatainak keresese
+    TEST(VonatAdatainakKeresese, MenuClass){
+        Menu menu;
+        std::istringstream vonatIN(
+            "vonatszam\n"
+            "ind_allomas\n"
+            "erk_allomas\n"
+            "12 12\n"
+            "13 13\n"
+            "1\n"
+        );
+        std::ostringstream vonatOUT;
+        std::streambuf* eredetiCOUT = std::cout.rdbuf();
+        std::cout.rdbuf(vonatOUT.rdbuf());
+        std::streambuf* eredetiCIN;
+        std::cin.rdbuf(vonatIN.rdbuf());
+        menu.uj_vonat();
+        std::cin.rdbuf(eredetiCIN);
+        std::cout.rdbuf(eredetiCOUT);
+
+        std::istringstream keresIN(
+            "vonatszam\n"
+        );
+        std::ostringstream keresOUT;
+        std::cin.rdbuf(keresIN.rdbuf());
+        std::cout.rdbuf(keresOUT.rdbuf());
+        menu.vonatAdatok();
+        std::cin.rdbuf(eredetiCIN);
+        std::cout.rdbuf(eredetiCOUT);
+        EXPECT_TRUE(keresOUT.str().find("Adja meg a keresett vonat szamat") != std::string::npos);
+        EXPECT_TRUE(keresOUT.str().find("Vonatszam: vonatszam") != std::string::npos);
+        EXPECT_TRUE(keresOUT.str().find("Indulasi allomas: ind_allomas") != std::string::npos);
+        EXPECT_TRUE(keresOUT.str().find("Erkezesi allomas: erk_allomas") != std::string::npos);
+    } END;
 }
+

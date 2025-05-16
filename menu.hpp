@@ -29,6 +29,9 @@ public:
     int randomJegyID();
     void vonatAdatok();
     Vonat getVonat(size_t idx) const;
+    Jegy getJegy(size_t idx) const;
+    const DinTomb<Jegy>& getJegyek() const;
+    const DinTomb<Vonat>& getVonatok() const;
 };
 
 #endif // DINTOMB_HPP

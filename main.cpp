@@ -10,6 +10,10 @@
 #include "memtrace.h"
 
 int main(){
+
+    //Test::futtatas();
+    //return 0;
+
     Menu main;
     bool fut = true;
     while(fut){
@@ -24,6 +28,5 @@ int main(){
         }
     }
     return 0;
-
 }
 
