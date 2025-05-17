@@ -454,4 +454,3 @@ void Test::futtatas() {
         EXPECT_EQ(vonat.get_Vonatszam(), "vonatszam");
     } END;
 }
-

@@ -121,3 +121,4 @@ void Fajl::mentesJegyek(const std::string& filename, const DinTomb<Jegy>& jegyek
     }
     out.close();
 }
+

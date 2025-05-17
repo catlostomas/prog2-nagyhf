@@ -51,3 +51,4 @@ Kocsi& Kocsi::operator=(const Kocsi& rhs){
 size_t Kocsi::getSzabadHely() const{
     return this->hely_db - this->foglalt_db;
 }
+

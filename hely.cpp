@@ -41,3 +41,4 @@ Hely& Hely::operator=(const Hely& rhs){
     }
     return *this;
 }
+

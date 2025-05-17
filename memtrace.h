@@ -233,3 +233,4 @@ void operator delete[](void *p, int, const char *) THROW_NOTHING;
 #endif /*MEMTRACE*/
 
 #endif /*MEMTRACE_H*/
+

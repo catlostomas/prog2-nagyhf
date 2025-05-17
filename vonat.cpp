@@ -68,3 +68,4 @@ Ido Vonat::get_indIdo() const{
 Ido Vonat::get_erkIdo() const{
     return this->erk_ido;
 }
+

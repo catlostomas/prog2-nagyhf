@@ -12,3 +12,4 @@ void Jegy::print(){
 bool Jegy::operator==(const Jegy& masik) const{
     return (Jegy_ID == masik.Jegy_ID);
 }
+

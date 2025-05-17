@@ -491,3 +491,4 @@ public:
 } // namespace gtest_lite
 
 #endif // GTEST_LITE_H
+

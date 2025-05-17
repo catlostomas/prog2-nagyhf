@@ -112,3 +112,4 @@ std::istream& operator>>(std::istream& is, String& s0);
 inline String operator+(char ch, const String& str) { return String(ch) + str; }
 
 #endif
+

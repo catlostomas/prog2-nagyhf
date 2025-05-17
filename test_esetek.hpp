@@ -17,3 +17,4 @@ struct Test {
 };
 
 #endif // TEST_ESETEK_HPP
+
