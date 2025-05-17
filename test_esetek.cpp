@@ -1,5 +1,6 @@
 
 #include "test_esetek.hpp"
+#define CPORTA
 
 void Test::futtatas() {
 // helyes filename - vonatokBeolvasasa
@@ -30,9 +31,9 @@ void Test::futtatas() {
 // default construktor
     TEST(Default_Construktor, VonatClass){
         Vonat test;
-        EXPECT_EQ(strcmp(test.get_Vonatszam().c_str(), ""), 0);
-        EXPECT_EQ(strcmp(test.get_indAll().c_str(), ""), 0);
-        EXPECT_EQ(strcmp(test.get_erkAll().c_str(), ""), 0);
+        EXPECT_EQ(0, strcmp(test.get_Vonatszam().c_str(), ""));
+        EXPECT_EQ(0, strcmp(test.get_indAll().c_str(), ""));
+        EXPECT_EQ(0, strcmp(test.get_erkAll().c_str(), ""));
         EXPECT_TRUE(test.get_indIdo().ora == 0 && test.get_indIdo().perc == 0);
         EXPECT_TRUE(test.get_erkIdo().ora == 0 && test.get_erkIdo().perc == 0);
         EXPECT_TRUE(test.getKeses() == 0);
@@ -43,9 +44,9 @@ void Test::futtatas() {
         Ido ind (12, 12);
         Ido erk (13, 13);
         Vonat test("vonatszam", "ind_allomas", "erk_allomas", ind, erk, 60, 5);
-        EXPECT_EQ(strcmp(test.get_Vonatszam().c_str(), "vonatszam"), 0);
-        EXPECT_EQ(strcmp(test.get_indAll().c_str(), "ind_allomas"), 0);
-        EXPECT_EQ(strcmp(test.get_erkAll().c_str(), "erk_allomas"), 0);
+        EXPECT_EQ(0, strcmp(test.get_Vonatszam().c_str(), "vonatszam"));
+        EXPECT_EQ(0, strcmp(test.get_indAll().c_str(), "ind_allomas"));
+        EXPECT_EQ(0, strcmp(test.get_erkAll().c_str(), "erk_allomas"));
         EXPECT_TRUE(test.get_indIdo().ora == ind.ora && test.get_indIdo().perc == ind.perc);
         EXPECT_TRUE(test.get_erkIdo().ora == erk.ora && test.get_erkIdo().perc == erk.perc);
         EXPECT_TRUE(test.getKeses() == 60);
@@ -57,9 +58,9 @@ void Test::futtatas() {
         Ido erk (13, 13);
         Vonat test("vonatszam", "ind_allomas", "erk_allomas", ind, erk, 60, 5);
         Vonat test2 = test;
-        EXPECT_EQ(strcmp(test.get_Vonatszam().c_str(), test2.get_Vonatszam().c_str()), 0);
-        EXPECT_EQ(strcmp(test.get_indAll().c_str(), test2.get_indAll().c_str()), 0);
-        EXPECT_EQ(strcmp(test.get_erkAll().c_str(), test2.get_erkAll().c_str()), 0);
+        EXPECT_EQ(0, strcmp(test.get_Vonatszam().c_str(), test2.get_Vonatszam().c_str()));
+        EXPECT_EQ(0, strcmp(test.get_indAll().c_str(), test2.get_indAll().c_str()));
+        EXPECT_EQ(0, strcmp(test.get_erkAll().c_str(), test2.get_erkAll().c_str()));
         EXPECT_TRUE(test.get_indIdo().ora == test2.get_indIdo().ora && test.get_indIdo().perc == test2.get_indIdo().perc);
         EXPECT_TRUE(test.get_erkIdo().ora == test2.get_erkIdo().ora && test.get_erkIdo().perc == test2.get_erkIdo().perc);
         EXPECT_TRUE(test2.getKeses() == test.getKeses());
@@ -71,9 +72,9 @@ void Test::futtatas() {
 // default konstruktor
     TEST(Default_Construktor, JegyClass){
         Jegy test;
-        EXPECT_EQ(strcmp(test.getVsz().c_str(), ""), 0);
-        EXPECT_EQ(strcmp(test.getIndAll().c_str(), ""), 0);
-        EXPECT_EQ(strcmp(test.getErkAll().c_str(), ""), 0);
+        EXPECT_EQ(0, strcmp(test.getVsz().c_str(), ""));
+        EXPECT_EQ(0, strcmp(test.getIndAll().c_str(), ""));
+        EXPECT_EQ(0, strcmp(test.getErkAll().c_str(), ""));
         EXPECT_TRUE(test.getIndIdo().ora == 0 && test.getIndIdo().perc == 0);
         EXPECT_TRUE(test.getErkIdo().ora == 0 && test.getErkIdo().perc == 0);
         EXPECT_TRUE(test.getKocsiszam() == 0);
@@ -85,9 +86,9 @@ void Test::futtatas() {
         Ido ind(12, 12);
         Ido erk(13, 13);
         Jegy test("ind_all", "erk_all", ind, erk, "vonatszam", 1, 1, 1);
-        EXPECT_EQ(strcmp(test.getVsz().c_str(), "vonatszam"), 0);
-        EXPECT_EQ(strcmp(test.getIndAll().c_str(), "ind_all"), 0);
-        EXPECT_EQ(strcmp(test.getErkAll().c_str(), "erk_all"), 0);
+        EXPECT_EQ(0, strcmp(test.getVsz().c_str(), "vonatszam"));
+        EXPECT_EQ(0, strcmp(test.getIndAll().c_str(), "ind_all"));
+        EXPECT_EQ(0, strcmp(test.getErkAll().c_str(), "erk_all"));
         EXPECT_TRUE(test.getIndIdo().ora == ind.ora && test.getIndIdo().perc == ind.perc);
         EXPECT_TRUE(test.getErkIdo().ora == erk.ora && test.getErkIdo().perc == erk.perc);
         EXPECT_TRUE(test.getKocsiszam() == 1);
@@ -155,9 +156,9 @@ void Test::futtatas() {
         EXPECT_TRUE(output.str().find("Kerem adja meg hany hely van egy kocsiban!") != std::string::npos);
         EXPECT_TRUE(output.str().find(" vonat sikeresen letrehozva!") != std::string::npos);
         Vonat uj = menu.getVonat(0);
-        EXPECT_EQ(uj.get_Vonatszam(), "vonatszam");
-        EXPECT_EQ(uj.get_indAll(), "ind_allomas");
-        EXPECT_EQ(uj.get_erkAll(), "erk_allomas");
+        EXPECT_EQ(0, strcmp(uj.get_Vonatszam().c_str(), "vonatszam"));
+        EXPECT_EQ(0, strcmp(uj.get_indAll().c_str(), "ind_allomas"));
+        EXPECT_EQ(0, strcmp(uj.get_erkAll().c_str(), "erk_allomas"));
         EXPECT_TRUE(uj.get_indIdo().ora == 12 && uj.get_indIdo().perc == 12);
         EXPECT_TRUE(uj.get_erkIdo().ora == 13 && uj.get_erkIdo().perc == 13);
         EXPECT_EQ(uj.getKocsiDB(), 1);
@@ -195,10 +196,10 @@ void Test::futtatas() {
         std::cin.rdbuf(cinBuf);
         std::cout.rdbuf(coutBuf);
         EXPECT_EQ(menu.getVonatok().getSiz(), 1);
-        Vonat vonat = menu.getVonat(0);
-        EXPECT_EQ(vonat.get_Vonatszam(), "vonatszam");
-        EXPECT_EQ(vonat.get_indAll(), "ind_allomas");
-        EXPECT_EQ(vonat.get_erkAll(), "erk_allomas");
+        Vonat uj = menu.getVonat(0);
+        EXPECT_EQ(0, strcmp(uj.get_Vonatszam().c_str(), "vonatszam"));
+        EXPECT_EQ(0, strcmp(uj.get_indAll().c_str(), "ind_allomas"));
+        EXPECT_EQ(0, strcmp(uj.get_erkAll().c_str(), "erk_allomas"));
     } END;
 
 // Vonat torlese
@@ -230,7 +231,7 @@ void Test::futtatas() {
         EXPECT_TRUE(out.str().find("Kerem adja meg a vonat szamat! ") != std::string::npos);
         EXPECT_TRUE(out.str().find("Ha mindent rendben talal, akkor kerem irjon be 1-et, ha nem akkor 0-t!") != std::string::npos);
         EXPECT_TRUE(out.str().find("vonatszam vonat torolve") != std::string::npos);
-        EXPECT_EQ(menu.getVonatok().getSiz(), 0);
+        EXPECT_EQ(0, menu.getVonatok().getSiz());
     } END;
 
     TEST(VonatTorleseNemLetezik, MenuClass){
@@ -259,8 +260,8 @@ void Test::futtatas() {
         std::cin.rdbuf(cinBuf);
         std::cout.rdbuf(coutBuf);
         EXPECT_TRUE(out.str().find("Nem talalhato ilyen vonatszam a rendszerben!") != std::string::npos);
-        EXPECT_EQ(menu.getVonatok().getSiz(), 1);
-        EXPECT_EQ(menu.getVonat(0).get_Vonatszam(), "vonatszam");
+        EXPECT_EQ(1, menu.getVonatok().getSiz());
+        EXPECT_EQ(0, strcmp(menu.getVonat(0).get_Vonatszam().c_str(), "vonatszam"));
     } END;
 
 // UjJegy teszt
@@ -304,11 +305,11 @@ void Test::futtatas() {
         EXPECT_TRUE(jegyOut.str().find("1 hely a 1 kocsiban lefoglalva!") != std::string::npos);
         EXPECT_EQ(menu.getJegyek().getSiz(), 1);
         Jegy jegy = menu.getJegy(0);
-        EXPECT_EQ(jegy.getVsz(), "vonatszam");
-        EXPECT_EQ(jegy.getIndAll(), "ind_allomas");
-        EXPECT_EQ(jegy.getErkAll(), "erk_allomas");
-        EXPECT_EQ(jegy.getKocsiszam(), 1);
-        EXPECT_EQ(jegy.getHelyszam(), 1);
+        EXPECT_EQ(0, strcmp(jegy.getVsz().c_str(), "vonatszam"));
+        EXPECT_EQ(0, strcmp(jegy.getIndAll().c_str(), "ind_allomas"));
+        EXPECT_EQ(0, strcmp(jegy.getErkAll().c_str(), "erk_allomas"));
+        EXPECT_EQ(1, jegy.getKocsiszam());
+        EXPECT_EQ(1, jegy.getHelyszam());
     } END;
 
 // Keses teszt
@@ -346,7 +347,7 @@ void Test::futtatas() {
         EXPECT_TRUE(kesesOUT.str().find("Kerem adja meg mennyire szeretne a kesest beallitani!") != std::string::npos);
         EXPECT_TRUE(kesesOUT.str().find("A keses atallitva 30 percre") != std::string::npos);
         Vonat vonat = menu.getVonat(0);
-        EXPECT_EQ(vonat.getKeses(), 30);
+        EXPECT_EQ(30, vonat.getKeses());
     } END;
 
     TEST(SetKesesNemLetezoVonat, MenuClass){
@@ -381,7 +382,7 @@ void Test::futtatas() {
         EXPECT_TRUE(kesesOUT.str().find("Kerem adja meg a vonat szamat! ") != std::string::npos);
         EXPECT_TRUE(kesesOUT.str().find("Nem talalhato ilyen vonatszam a rendszerben!") != std::string::npos);
         Vonat vonat = menu.getVonat(0);
-        EXPECT_EQ(vonat.getKeses(), 0);
+        EXPECT_EQ(0, vonat.getKeses());
     } END;
 // Vonat adatainak keresese
     TEST(VonatAdatainakKeresese, MenuClass){
@@ -450,7 +451,9 @@ void Test::futtatas() {
         std::cout.rdbuf(eredetiCOUT);
         EXPECT_TRUE(keresOUT.str().find("Kerem adja meg a vonat szamat!") != std::string::npos);
         EXPECT_TRUE(keresOUT.str().find("Nem talalhato ilyen vonatszam a rendszerben!") != std::string::npos);
-        Vonat vonat = menu.getVonat(0);
-        EXPECT_EQ(vonat.get_Vonatszam(), "vonatszam");
+        Vonat uj = menu.getVonat(0);
+        EXPECT_EQ(0, strcmp(uj.get_Vonatszam().c_str(), "vonatszam"));
+        EXPECT_EQ(0, strcmp(uj.get_indAll().c_str(), "ind_allomas"));
+        EXPECT_EQ(0, strcmp(uj.get_erkAll().c_str(), "erk_allomas"));
     } END;
 }
