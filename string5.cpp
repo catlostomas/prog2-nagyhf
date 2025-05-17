@@ -128,3 +128,8 @@ bool String::operator==(const String& rhs) const{
     return std::strcmp(pData, rhs.pData) == 0;
 }
 
+char* String::getpData(){
+    return pData;
+}
+
+

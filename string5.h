@@ -88,6 +88,8 @@ public:
 
     //== operator
     bool operator==(const String& rhs) const;
+
+    char* getpData();
 };
 
 /// Globális függvények:

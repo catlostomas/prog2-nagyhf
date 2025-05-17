@@ -7,21 +7,21 @@ void Hely::foglal(){
         foglalt = true;
     }
     else{
-        std::cout << "mar foglalt" << std::endl;
+        std::cout << "A hely mar foglalt!" << std::endl;
     }
 }
 
 void Hely::foglalas_torles(){
     if (foglalt){
         foglalt = false;
-        std::cout << "foglalas torolve" << std::endl;
+        std::cout << "Foglalas torolve!" << std::endl;
     }
     else{
-        std::cout << "nem volt foglalt" << std::endl;
+        std::cout << "Nem volt foglalt!" << std::endl;
     }
 }
 std::ostream& operator<<(std::ostream& os, const Hely& h){
-    os << "hely_ID: " << h.getID()<< " foglalt-e: "<< h.getFoglalt() << std::endl;
+    os << "A " << h.getID()<< ", hely foglalt-e: "<< h.getFoglalt() << std::endl;
     return os; 
 }
 

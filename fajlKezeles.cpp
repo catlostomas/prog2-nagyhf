@@ -3,7 +3,7 @@
 void Fajl::beolvasVonatok(const std::string& filename, DinTomb<Vonat>& vonatok){
     std::ifstream in(filename);
     if (!in){
-        throw std::runtime_error("Nem lehet a fajlt megnyitni");
+        throw std::runtime_error("Nem talalhato a vonatok.txt fajl, kerem hozza letre!");
     }
     vonatok.clear();
     size_t vonatDB;
@@ -43,7 +43,7 @@ void Fajl::beolvasVonatok(const std::string& filename, DinTomb<Vonat>& vonatok){
 void Fajl::beolvasJegyek(const std::string& filename, DinTomb<Jegy>& jegyek){
     std::ifstream in(filename);
     if (!in){
-        throw std::runtime_error("Nem lehet a fajlt megnyitni");
+        throw std::runtime_error("Nem talalhato a jegyek.txt fajl, kerem hozza letre!");
     }
     size_t jegyDB;
     in >> jegyDB;
@@ -77,7 +77,7 @@ void Fajl::beolvasJegyek(const std::string& filename, DinTomb<Jegy>& jegyek){
 void Fajl::mentesVonatok(const std::string& filename, const DinTomb<Vonat>& vonatok){
     std::ofstream out(filename);
     if (!out){
-        throw std::runtime_error("Nem lehet a fajlt megnyitni");
+        throw std::runtime_error("Nem talalhato a vonatok.txt fajl, kerem hozza letre!");
     }
     out << vonatok.getSiz() << "\n";
     for (size_t i = 0; i < vonatok.getSiz(); i++){
@@ -100,21 +100,21 @@ void Fajl::mentesVonatok(const std::string& filename, const DinTomb<Vonat>& vona
             }
             out << "\n";
         }
-    out.close();
     }
+    out.close();
 }
 
 void Fajl::mentesJegyek(const std::string& filename, const DinTomb<Jegy>& jegyek){
     std::ofstream out(filename);
     if (!out){
-        throw std::runtime_error("Nem lehet a fajlt megnyitni");
+        throw std::runtime_error("Nem talalhato a jegyek.txt fajl, kerem hozza letre!");
     }
     out << jegyek.getSiz() << "\n";
     for (size_t i = 0; i < jegyek.getSiz(); i++){
         const Jegy& j = jegyek[i];
         out << j.getIndAll().c_str() << "\n";
         out << j.getErkAll().c_str() << "\n";
-        out << j.getIndIdo().ora << ' ' << j.getErkIdo().perc << "\n";
+        out << j.getIndIdo().ora << ' ' << j.getIndIdo().perc << "\n";
         out << j.getErkIdo().ora << ' ' << j.getErkIdo().perc << "\n";
         out << j.getVsz().c_str() << "\n";
         out << j.getKocsiszam() << ' ' << j.getHelyszam() << ' ' << j.getJegyID() << "\n";

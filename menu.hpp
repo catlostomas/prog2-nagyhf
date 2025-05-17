@@ -19,6 +19,7 @@ public:
     void showAdmin();
     void AdminMainloop();
     void show();
+    void showLogo();
     int get_func();
     void call_func();
     void uj_vonat();
@@ -26,9 +27,11 @@ public:
     size_t vonat_idx_keres(const String& vsz);
     void vonat_torol();
     void keses_beallit();
-    void foglal();
+    void foglal(size_t idx);
     int randomJegyID();
     void vonatAdatok();
+    void foglalVegallomasok();
+    void clear();
     Vonat getVonat(size_t idx) const;
     Jegy getJegy(size_t idx) const;
     const DinTomb<Jegy>& getJegyek() const;

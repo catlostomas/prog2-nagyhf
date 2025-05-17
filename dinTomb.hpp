@@ -48,7 +48,7 @@ public:
     void del_element(const T& val){
         size_t idx = is_element(val);
         if (idx == static_cast<size_t>(-1)){
-            throw std::runtime_error("Nem eleme a tombnek");
+            throw std::runtime_error("A keresett elem nincs a tombben!");
             return;
         }
         for (size_t i = idx; i < siz - 1; ++i){

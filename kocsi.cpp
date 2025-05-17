@@ -22,7 +22,7 @@ bool Kocsi::is_tele(){
 
 void Kocsi::foglal_hely(int idx){
     if (idx < 0 || idx >= hely_db){
-        std::cout << "rossz idx" << std::endl;
+        std::cout << "Rossz index" << std::endl;
         return;
     }
     if (!helyTomb[idx].getFoglalt()){
@@ -30,7 +30,7 @@ void Kocsi::foglal_hely(int idx){
         foglalt_db++;
     }
     else{
-        std::cout << "mar foglalt" << std::endl;
+        std::cout << "Mar foglalt" << std::endl;
     }
 }
 
