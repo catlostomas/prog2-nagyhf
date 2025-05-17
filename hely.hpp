@@ -3,6 +3,7 @@
 #define HELY_HPP
 
 #include <iostream>
+#include "memtrace.h"
 
 class Hely{
     int hely_ID;

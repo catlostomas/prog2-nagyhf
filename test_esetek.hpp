@@ -10,6 +10,7 @@
 #include "vonat.hpp"
 #include "dinTomb.hpp"
 #include "gtest_lite.h"
+#include "memtrace.h"
 
 struct Test {
     static void futtatas();

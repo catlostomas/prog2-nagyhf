@@ -9,11 +9,14 @@
 #include "gtest_lite.h"
 #include "memtrace.h"
 
+//#define CPORTA
+
 int main(){
 
-    //Test::futtatas();
-    //return 0;
-
+#ifdef CPORTA
+    Test::futtatas();
+    return 0;
+#else
     Menu main;
     bool fut = true;
     while(fut){
@@ -28,5 +31,6 @@ int main(){
         }
     }
     return 0;
+#endif
 }
 

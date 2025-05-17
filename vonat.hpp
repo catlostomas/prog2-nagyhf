@@ -4,6 +4,7 @@
 #include "kocsi.hpp"
 #include "string5.h"
 #include "ido.hpp"
+#include "memtrace.h"
 
 class Vonat{
     String vonatszam;
@@ -18,9 +19,9 @@ public:
     // def konstruktor
     Vonat(): vonatszam(""), ind_allomas(""), erk_allomas(""), ind_ido(0, 0), erk_ido(0, 0), keses(0), kocsi_db(0), kocsik() {};
     // parameteres konstruktor
-    Vonat(const String& vsz, const String& ind_all, const String& erk_all, const Ido& indIdo, const Ido& erkIdo, int k = 0, size_t kocsDB = 0): vonatszam(vsz), ind_allomas(ind_all), erk_allomas(erk_all), ind_ido(indIdo), erk_ido(erkIdo), keses(k), kocsi_db(kocsDB), kocsik() {
+    Vonat(const String& vsz, const String& ind_all, const String& erk_all, const Ido& indIdo, const Ido& erkIdo, int k = 0, size_t kocsDB = 0, size_t KocsibanHely = 50): vonatszam(vsz), ind_allomas(ind_all), erk_allomas(erk_all), ind_ido(indIdo), erk_ido(erkIdo), keses(k), kocsi_db(kocsDB), kocsik() {
         for (size_t i = 0; i < kocsDB; i++){
-            kocsik.push_back(Kocsi(i, 50)); // 50 hely legyen egy kocsiban
+            kocsik.push_back(Kocsi(i, KocsibanHely)); 
         }
     };
     // copy konstruktor

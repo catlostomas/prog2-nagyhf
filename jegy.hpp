@@ -4,6 +4,7 @@
 
 #include "ido.hpp"
 #include "string5.h"
+#include "memtrace.h"
 
 class Jegy{
     String ind_all;

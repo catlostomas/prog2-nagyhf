@@ -2,6 +2,7 @@
 #define IDO_HPP
 
 #include <iostream>
+#include "memtrace.h"
 
 struct Ido{
     int ora;

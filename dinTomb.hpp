@@ -2,6 +2,8 @@
 #ifndef DINTOMB_HPP
 #define DINTOMB_HPP
 
+#include "memtrace.h"
+
 template <class T>
 class DinTomb{
     T* pData;

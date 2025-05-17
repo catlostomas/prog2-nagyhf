@@ -4,6 +4,7 @@
 
 #include "hely.hpp"
 #include "dinTomb.hpp"
+#include "memtrace.h"
 
 class Kocsi{
     int kocsi_szam;

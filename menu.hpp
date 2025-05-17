@@ -8,6 +8,7 @@
 #include "jegy.hpp"
 #include "fajlKezeles.hpp"
 #include "test_esetek.hpp"
+#include "memtrace.h"
 
 class Menu{
 private:

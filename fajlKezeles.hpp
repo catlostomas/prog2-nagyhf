@@ -9,6 +9,7 @@
 #include "dinTomb.hpp"
 #include "vonat.hpp"
 #include "jegy.hpp"
+#include "memtrace.h"
 
 
 class Fajl{

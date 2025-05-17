@@ -165,7 +165,8 @@ void Test::futtatas() {
             "erk_allomas\n"
             "12 12\n"
             "13 13\n"
-            "3 \n" // kocsik szama
+            "1\n"
+            "10\n" 
         );
         std::ostringstream output;
         std::streambuf* cinBuf = std::cin.rdbuf();
@@ -183,6 +184,7 @@ void Test::futtatas() {
             "Adja meg az indulas idejet (ora perc) \n"
             "Adja meg az erkezest idejet (ora perc) \n"
             "Adja meg, hogy hany kocsibol all a vonat? \n"
+            "Adja meg, hogy hany hely van egy kocsiban\n"
             "Uj vonat hozzaadva!\n";
 
         EXPECT_TRUE(output.str().find(vartOutput) != std::string::npos);
@@ -192,10 +194,11 @@ void Test::futtatas() {
         EXPECT_EQ(uj.get_erkAll(), "erk_allomas");
         EXPECT_TRUE(uj.get_indIdo().ora == 12 && uj.get_indIdo().perc == 12);
         EXPECT_TRUE(uj.get_erkIdo().ora == 13 && uj.get_erkIdo().perc == 13);
-        EXPECT_EQ(uj.getKocsiDB(), 3);
+        EXPECT_EQ(uj.getKocsiDB(), 1);
+        EXPECT_EQ(uj.getKocsi(0).get_helyDB(), 10);
     } END;
 
-// Vonat torlese, EZT MEG KELL FIXELNI
+// Vonat torlese
     TEST(VonatTorlese, MenuClass){
         std::istringstream vonatIN(
             "vonatszam\n"
@@ -204,6 +207,7 @@ void Test::futtatas() {
             "12 12\n"
             "13 13\n"
             "1\n"
+            "10\n"
         );
         std::istringstream torlesIN(
             "vonatszam\n"
@@ -236,6 +240,7 @@ void Test::futtatas() {
             "12 12\n"
             "13 13\n"
             "1\n"
+            "10\n"
         );
         std::ostringstream vonatOut;
         std::streambuf* eredetiOut = std::cout.rdbuf();
@@ -274,6 +279,7 @@ void Test::futtatas() {
             "12 12\n"
             "13 13\n"
             "1\n"
+            "10\n"
         );
         std::ostringstream vonatOUT;
         std::streambuf* eredetiOUT = std::cout.rdbuf();
@@ -311,6 +317,7 @@ void Test::futtatas() {
             "12 12\n"
             "13 13\n"
             "1\n"
+            "10\n"
         );
         std::ostringstream vonatOUT;
         std::streambuf* eredetiCOUT = std::cout.rdbuf();

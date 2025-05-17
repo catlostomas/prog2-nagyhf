@@ -67,6 +67,7 @@ void Menu::mainloop(){
 void Menu::uj_vonat(){
     String vsz, ind_all, erk_all;
     int ind_ora, ind_perc, erk_ora, erk_perc, kocsiDB;
+    size_t HelyKocsiban;
     std::cout << "Adja meg a vonatszamot:" << std::endl;
     std::cin >> vsz;
 
@@ -93,7 +94,9 @@ void Menu::uj_vonat(){
     Ido erk_ido(erk_ora, erk_perc);
     std::cout << "Adja meg, hogy hany kocsibol all a vonat? " << std::endl;
     std::cin >> kocsiDB;
-    Vonat ujVonat(vsz, ind_all, erk_all, ind_ido, erk_ido, 0, kocsiDB);
+    std::cout << "Adja meg, hogy hany hely van egy kocsiban" << std::endl;
+    std::cin >> HelyKocsiban;
+    Vonat ujVonat(vsz, ind_all, erk_all, ind_ido, erk_ido, 0, kocsiDB, HelyKocsiban);
     vonatok.push_back(ujVonat);
     std::cout << "Uj vonat hozzaadva!" << std::endl;
 }
