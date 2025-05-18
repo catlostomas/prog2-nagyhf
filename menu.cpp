@@ -1,23 +1,20 @@
-
 #include "menu.hpp"
 
-#define CPORTA
-
-void Menu::show(){
+void Menu::show() const{
     std::cout << "[1] Vonat adatainak keresese" << std::endl;
     std::cout << "[2] Jegy vasarlas" << std::endl;
     std::cout << "[3] Admin felulet" << std::endl;
     std::cout << "[4] Kilepes es mentes" << std::endl;
 }
 
-void Menu::showAdmin(){
+void Menu::showAdmin() const{
     std::cout << "[1] Uj vonat hozzaadasa" << std::endl;
     std::cout << "[2] Vonat torlese" << std::endl;
     std::cout << "[3] Keses beallitasa" << std::endl;
     std::cout << "[4] Visszalepes" << std::endl;
 }
 
-void Menu::showLogo(){
+void Menu::showLogo() const{
     // ASCII vonat forras : https://www.asciiart.eu/vehicles/trains
     std::cout << std::endl;
     std::cout << "___________   _______________________________________^__ " << std::endl;
@@ -33,13 +30,11 @@ void Menu::showLogo(){
 
 }
 
-// megnezi hogy ervenyes funckiot adtunk meg
 int Menu::get_func(){
     int pick = 0;
     std::cin >> pick;
     if (pick < 0 || pick >= 5){
         throw std::out_of_range("Nem letezo funkciot szeretne hasznalni");
-        return -1;
     }
     return pick;
 }
@@ -83,6 +78,7 @@ void Menu::mainloop(){
     Fajl::mentesVonatok("vonatok.txt", vonatok);
     return;
 }
+
 void Menu::uj_vonat(){
     clear();
     String vsz, ind_all, erk_all;
@@ -138,7 +134,7 @@ size_t Menu::vonat_idx_keres(const String& vsz){
             return i;
         }
     }
-    return -1;
+    throw std::out_of_range("Nem talalhato ilyen vonatszam a rendszerben!");
 }
 
 void Menu::vonat_torlese(){
@@ -147,12 +143,9 @@ void Menu::vonat_torlese(){
     size_t idx;
     std::cout << "Kerem adja meg a vonat szamat! " << std::endl;
     std::cin >> keresett;
-    idx = vonat_idx_keres(keresett);
     try{
-        if (idx == static_cast<size_t>(-1)){
-            throw std::runtime_error("Nem talalhato ilyen vonatszam a rendszerben!");
-        }
-    } catch (std::runtime_error& err){
+        idx = vonat_idx_keres(keresett);
+    } catch (std::out_of_range& err){
         std::cout << err.what() << std::endl;
         return;
     }
@@ -183,9 +176,10 @@ void Menu::keses_beallit(){
     size_t idx;
     std::cout << "Kerem adja meg a vonat szamat! " << std::endl;
     std::cin >> keresett;
-    idx = vonat_idx_keres(keresett);
-    if (idx == static_cast<size_t>(-1)){
-        std::cout << "Nem talalhato ilyen vonatszam a rendszerben!";
+    try{
+        idx = vonat_idx_keres(keresett);
+    } catch (std::out_of_range& err){
+        std::cout << err.what() << std::endl;
         return;
     }
     std::cout << "A " << vonatok[idx].get_Vonatszam() << " vonat aktualis kesese: " << vonatok[idx].getKeses() << std::endl;
@@ -215,12 +209,14 @@ void Menu::vonatAdatok(){
     String keresett_vonatszam;
     std::cout << "Kerem adja meg a vonat szamat!" << std::endl;
     std::cin >> keresett_vonatszam;
-    size_t idx = vonat_idx_keres(keresett_vonatszam);
-    try{
+    size_t idx = 0;
+    try {
+        idx = vonat_idx_keres(keresett_vonatszam);
         Vonat keresett = getVonat(idx);
         keresett.print();
     } catch (std::out_of_range& err){
-        std::cout << "Nem talalhato ilyen vonatszam a rendszerben!" << std::endl;
+        std::cout << err.what() << std::endl;
+        return;
     }
     return;
 }
@@ -262,7 +258,6 @@ const DinTomb<Jegy>& Menu::getJegyek() const{
 const DinTomb<Vonat>& Menu::getVonatok() const{
     return vonatok;
 }
-
 
 void Menu::foglal(size_t idx){
     size_t kocsiszam, helyszam;
@@ -320,9 +315,11 @@ void Menu::foglalVegallomasok(){
     }
     std::cout << "Kerem adja meg a vonat szamat!" << std::endl;
     std::cin >> pick;
-    size_t idx = vonat_idx_keres(pick);
-    if (idx == static_cast<size_t>(-1)) {
-        std::cout << "Nem letezik a keresett vonat!" << std::endl;
+    size_t idx = 0;
+    try{
+        idx = vonat_idx_keres(pick);
+    } catch(std::out_of_range& err){
+        std::cout << err.what() << std::endl;
         return;
     }
     try{
@@ -335,7 +332,7 @@ void Menu::foglalVegallomasok(){
     return;
 
 }
-// konzol torlese windows/unix rendszereken, CPORTA makro, hogy ha a tesztesetek futnak ne toroljon semmit
+
 void Menu::clear() {
     #ifndef CPORTA
         #ifdef _WIN32

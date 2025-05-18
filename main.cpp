@@ -9,8 +9,6 @@
 #include "gtest_lite.h"
 #include "memtrace.h"
 
-#define CPORTA
-
 int main(){
 
 #ifdef CPORTA

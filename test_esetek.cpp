@@ -1,6 +1,5 @@
 
 #include "test_esetek.hpp"
-#define CPORTA
 
 void Test::futtatas() {
 // helyes filename - vonatokBeolvasasa
