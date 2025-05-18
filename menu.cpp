@@ -260,7 +260,8 @@ const DinTomb<Vonat>& Menu::getVonatok() const{
 }
 
 void Menu::foglal(size_t idx){
-    size_t kocsiszam, helyszam;
+    size_t kocsiszam;
+    int helyszam;
     std::cout << vonatok[idx].getKocsiDB() << " kocsi van a vonaton. Melyik kocsiban szeretne helyet foglalni? " << std::endl;
     std::cin >> kocsiszam;
     if (kocsiszam <= 0 || kocsiszam > vonatok[idx].getKocsiDB()){

@@ -91,7 +91,7 @@ public:
         try{
             idx = is_element(val);
         } catch(std::out_of_range& err){
-            std::cout << err.what() << std::endl;
+            throw std::runtime_error("Nem jo index!");
         }
         for (size_t i = idx; i < siz - 1; ++i){
             pData[i] = pData[i + 1];

@@ -10,7 +10,6 @@
 #include "memtrace.h"
 
 int main(){
-
 #ifdef CPORTA
     Test::futtatas();
     return 0;

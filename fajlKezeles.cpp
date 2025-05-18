@@ -86,13 +86,13 @@ void Fajl::mentesVonatok(const std::string& filename, const DinTomb<Vonat>& vona
         for (size_t j = 0; j < v.getKocsiDB(); j++){
             const Kocsi& k = v.getKocsi(j);
             size_t foglalt = 0;
-            for (size_t x = 0; x < k.get_helyDB(); x++){
+            for (int x = 0; x < k.get_helyDB(); x++){
                 if (k.get_hely(x).getFoglalt()){
                     foglalt++;
                 }
             }
             out << k.get_helyDB() << " " << foglalt << "\n";
-            for (size_t x = 0; x < k.get_helyDB(); x++){
+            for (int x = 0; x < k.get_helyDB(); x++){
                 const Hely& h = k.get_hely(x);
                 if (h.getFoglalt()){
                     out << h.getID() << " ";

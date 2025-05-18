@@ -10,7 +10,7 @@
 
 /**
  * @struct Ido
- * @brief Időpontokat tárolására szükséges
+ * @brief Időpontok tárolására szükséges
  * 
  * Struct, amiben időpontokat lehet tárolni, változtatni
  * Óra és perc formátumban tárol
